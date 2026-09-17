@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AlcanSee Digital — Diagnóstico gratuito para lojas de moda</title>
+<meta name="description" content="Sua loja de moda vendendo todo mês, não só na liquidação. Diagnóstico gratuito com a assessoria que já atendeu +400 lojas de vestuário, calçados e acessórios.">
+<link rel="icon" href="assets/logo-icone.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&family=Questrial&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF8F4;
+    --paper:#FFFFFF;
+    --ink:#17171B;
+    --ink-soft:#5B5B62;
+    --ink-faint:#8C8C92;
+    --line:rgba(23,23,27,0.10);
+    --line-strong:rgba(23,23,27,0.16);
+    --accent:#5CE1E6;
+    --accent-deep:#0E6A6E;
+    --accent-deeper:#0A4F52;
+    --accent-soft:rgba(92,225,230,0.14);
+    --dark:#121214;
+    --dark-paper:#1B1B1F;
+    --dark-line:rgba(250,248,244,0.12);
+    --dark-ink-soft:rgba(250,248,244,0.62);
+    --radius:18px;
+    --wrap:1180px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Questrial', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 32px;}
+  section{position:relative;}
+  section.pad{padding:120px 0;}
+
+  h1,h2,h3,h4{
+    font-family:'Lexend', sans-serif;
+    font-weight:600;
+    letter-spacing:-0.02em;
+    line-height:1.14;
+  }
+  em.hl{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;color:var(--accent-deep);}
+  .dark em.hl{color:var(--accent);}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12.5px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin-bottom:18px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--accent-deep);display:inline-block;}
+  .eyebrow.center{justify-content:center;}
+  .dark .eyebrow{color:var(--accent);}
+  .dark .eyebrow::before{background:var(--accent);}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:16px 30px;border-radius:999px;
+    font-family:'Questrial', sans-serif;font-size:14.5px;letter-spacing:0.03em;text-transform:uppercase;
+    cursor:pointer;border:1px solid transparent;white-space:nowrap;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1), background .3s, color .3s, border-color .3s;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--accent-deep);color:#fff;}
+  .btn-primary:hover{background:var(--accent-deeper);color:#fff;}
+  .btn-outline{background:transparent;color:var(--ink);border-color:var(--line-strong);}
+  .btn-outline:hover{border-color:var(--ink);}
+  .btn-accent{background:var(--accent);color:var(--dark);}
+  .btn-accent:hover{background:#fff;color:var(--dark);}
+  .btn-sm{padding:12px 22px;font-size:13px;}
+
+  .section-head{max-width:680px;margin:0 auto 56px;text-align:center;}
+  .section-head h2{font-size:clamp(28px,4vw,44px);}
+  .section-head p{margin-top:16px;color:var(--ink-soft);font-size:16.5px;}
+  .dark .section-head p{color:var(--dark-ink-soft);}
+
+  /* ===== Header ===== */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,248,244,0.82);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s;
+  }
+  header.scrolled{border-bottom-color:var(--line);}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;}
+  header .logo{display:flex;align-items:center;gap:10px;}
+  header .logo img{height:30px;width:auto;}
+  header .logo span{font-family:'Lexend',sans-serif;font-weight:600;font-size:17px;letter-spacing:-0.02em;color:var(--ink);}
+  header .logo span em{font-style:italic;color:var(--accent-deep);}
+  header nav{display:flex;align-items:center;gap:28px;}
+  header nav a.link{font-size:13.5px;color:var(--ink-soft);letter-spacing:0.02em;transition:color .2s;}
+  header nav a.link:hover{color:var(--ink);}
+
+  /* ===== Hero ===== */
+  .hero{
+    padding:72px 0 0;
+    background:
+      radial-gradient(ellipse 720px 520px at 88% 30%, rgba(92,225,230,0.20), transparent 62%),
+      var(--bg);
+    overflow:hidden;
+  }
+  .hero .wrap{display:grid;grid-template-columns:1.02fr 0.98fr;gap:40px;align-items:end;}
+  .hero-copy{padding-bottom:96px;}
+  .hero h1{font-size:clamp(38px,5.2vw,66px);color:var(--ink);}
+  .hero .sub{margin-top:24px;font-size:clamp(16px,1.8vw,18.5px);color:var(--ink-soft);max-width:540px;}
+  .hero .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;}
+  .hero .micro{margin-top:14px;font-size:13px;color:var(--ink-faint);}
+  .trust-row{margin-top:48px;display:flex;gap:36px;flex-wrap:wrap;padding-top:28px;border-top:1px solid var(--line);}
+  .trust{display:flex;flex-direction:column;}
+  .trust .num{font-family:'Playfair Display',serif;font-style:italic;font-size:30px;color:var(--accent-deep);line-height:1;}
+  .trust .lbl{margin-top:6px;font-size:12.5px;color:var(--ink-soft);letter-spacing:0.03em;}
+
+  /* figura integrada: marca gigante atrás + mulher recortada apoiada na borda da seção */
+  .hero-figure{position:relative;height:640px;align-self:end;}
+  .hero-mark{
+    position:absolute;left:50%;bottom:-60px;transform:translateX(-46%);
+    width:560px;height:560px;opacity:0.95;pointer-events:none;
+  }
+  .hero-mark img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 30px 60px rgba(92,225,230,0.25));}
+  .hero-woman{
+    position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+    width:min(760px,118%);max-width:none;
+    filter:drop-shadow(0 24px 40px rgba(23,23,27,0.22));
+  }
+  .mock-card{
+    position:absolute;z-index:2;background:rgba(27,27,31,0.94);border:1px solid var(--dark-line);
+    border-radius:14px;padding:13px 15px;width:230px;backdrop-filter:blur(8px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.30);
+  }
+  .mock-card .who{display:flex;justify-content:space-between;font-size:12px;color:var(--dark-ink-soft);margin-bottom:5px;}
+  .mock-card .msg{font-size:13.5px;color:var(--bg);line-height:1.4;}
+  .mock-card.mc-1{left:-16px;top:300px;transform:rotate(-3deg);}
+  .sale-toast{
+    position:absolute;z-index:3;right:-10px;top:236px;background:var(--accent);color:var(--dark);
+    border-radius:12px;padding:12px 16px;width:196px;
+    box-shadow:0 16px 32px rgba(0,0,0,0.22);transform:rotate(2.5deg);
+  }
+  .sale-toast .t1{font-size:11px;letter-spacing:0.04em;text-transform:uppercase;opacity:0.75;}
+  .sale-toast .t2{font-size:13.5px;margin-top:4px;}
+  .sale-toast .t3{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;margin-top:2px;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(92,225,230,.55);}70%{box-shadow:0 0 0 10px rgba(92,225,230,0);}100%{box-shadow:0 0 0 0 rgba(92,225,230,0);}}
+
+  /* ===== Stats band ===== */
+  .stats-band{background:var(--dark);padding:20px 0;overflow:hidden;border-bottom:1px solid var(--dark-line);}
+  .marquee{width:100%;overflow:hidden;}
+  .marquee-track{display:flex;align-items:center;gap:28px;width:max-content;animation:marquee 28s linear infinite;}
+  .stat-item{font-size:14px;letter-spacing:0.02em;color:var(--dark-ink-soft);white-space:nowrap;}
+  .stat-item b{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;color:var(--accent);font-size:17px;margin-right:2px;}
+  .stat-dot{color:var(--accent);font-size:12px;opacity:0.7;}
+  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ===== Dores ===== */
+  .dark{background:var(--dark);color:var(--bg);}
+  .pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--dark-line);border:1px solid var(--dark-line);border-radius:20px;overflow:hidden;}
+  .pain-card{background:var(--dark);padding:40px 36px;display:flex;gap:22px;align-items:flex-start;}
+  .pain-x{
+    flex:0 0 40px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(92,225,230,0.4);
+    display:flex;align-items:center;justify-content:center;color:var(--accent);
+    font-family:'Playfair Display',serif;font-style:italic;font-size:15px;
+  }
+  .pain-card h3{font-size:20px;color:var(--bg);margin-bottom:8px;font-weight:400;}
+  .pain-card p{color:var(--dark-ink-soft);font-size:14.5px;}
+  .pain-bridge{
+    margin:56px auto 0;max-width:720px;text-align:center;
+    font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(20px,2.6vw,26px);line-height:1.4;color:var(--bg);
+  }
+  .pain-bridge span{color:var(--accent);}
+
+  /* ===== Método ===== */
+  .method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .method-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:40px 34px;
+    display:flex;flex-direction:column;
+    transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s;
+  }
+  .method-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(23,23,27,0.08);}
+  .method-index{font-family:'Playfair Display',serif;font-style:italic;font-size:40px;color:var(--accent-deep);line-height:1;margin-bottom:18px;}
+  .method-card h3{font-size:24px;margin-bottom:12px;}
+  .method-card p{color:var(--ink-soft);font-size:15px;}
+  .method-card ul{list-style:none;margin-top:22px;padding-top:22px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:10px;}
+  .method-card li{font-size:14px;color:var(--ink);display:flex;gap:10px;align-items:flex-start;}
+  .method-card li::before{content:"";flex:0 0 6px;width:6px;height:6px;border-radius:50%;background:var(--accent-deep);margin-top:8px;}
+  .method-card .outcome{margin-top:auto;padding-top:22px;font-size:13px;color:var(--accent-deep);letter-spacing:0.04em;text-transform:uppercase;}
+
+  /* ===== Resultados ===== */
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .testi-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden;
+    transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s;
+  }
+  .testi-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(23,23,27,0.10);}
+  .testi-video{position:relative;aspect-ratio:16/10;background:var(--dark);cursor:pointer;overflow:hidden;}
+  .testi-video img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
+  .testi-video:hover img{transform:scale(1.05);}
+  .testi-video iframe{width:100%;height:100%;border:0;}
+  .play-btn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+  .play-btn span{
+    width:56px;height:56px;border-radius:50%;background:var(--accent);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 24px rgba(0,0,0,0.25);transition:transform .3s;
+  }
+  .testi-video:hover .play-btn span{transform:scale(1.08);}
+  .testi-body{padding:26px 26px 28px;}
+  .testi-result{font-family:'Playfair Display',serif;font-style:italic;font-size:34px;color:var(--accent-deep);line-height:1;}
+  .testi-result small{font-family:'Questrial',sans-serif;font-style:normal;font-size:12.5px;color:var(--ink-soft);display:block;margin-top:6px;letter-spacing:0.04em;text-transform:uppercase;}
+  .testi-quote{margin-top:18px;font-size:15.5px;line-height:1.5;color:var(--ink);}
+  .testi-who{margin-top:16px;display:flex;flex-direction:column;}
+  .testi-who .name{font-size:14px;}
+  .testi-who .role{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+
+  /* ===== Diferenciais ===== */
+  .diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .diff-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:34px 30px 36px;
+    transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s;
+  }
+  .diff-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(23,23,27,0.08);}
+  .diff-icon{
+    width:52px;height:52px;border-radius:14px;background:var(--accent-soft);color:var(--accent-deep);
+    display:flex;align-items:center;justify-content:center;margin-bottom:22px;
+  }
+  .diff-card h3{font-size:19px;margin-bottom:10px;font-weight:600;}
+  .diff-card p{font-size:14.5px;color:var(--ink-soft);}
+  .diff-foot{
+    margin-top:40px;display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap;text-align:center;
+  }
+  .diff-foot p{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(18px,2.2vw,22px);color:var(--ink);max-width:460px;}
+  .diff-foot p b{font-family:'Lexend',sans-serif;font-style:normal;font-weight:600;}
+
+  /* ===== Como funciona ===== */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;position:relative;}
+  .steps::before{
+    content:"";position:absolute;top:26px;left:12%;right:12%;height:1px;
+    background:linear-gradient(90deg, transparent, var(--line-strong) 20%, var(--line-strong) 80%, transparent);
+  }
+  .step{text-align:center;padding:0 12px;}
+  .step-n{
+    width:52px;height:52px;border-radius:50%;background:var(--paper);border:1px solid var(--line-strong);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 24px;
+    font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--accent-deep);
+    position:relative;z-index:1;
+  }
+  .step h3{font-size:20px;margin-bottom:10px;}
+  .step p{color:var(--ink-soft);font-size:15px;}
+  .dark .steps::before{background:linear-gradient(90deg, transparent, var(--dark-line) 20%, var(--dark-line) 80%, transparent);}
+  .dark .step-n{background:var(--dark-paper);border-color:var(--dark-line);color:var(--accent);}
+  .dark .step p{color:var(--dark-ink-soft);}
+
+  /* ===== Form ===== */
+  .form-section{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .form-layout{display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;align-items:start;}
+  .form-aside h2{font-size:clamp(28px,3.6vw,40px);}
+  .form-aside .lead{margin-top:16px;color:var(--ink-soft);font-size:16.5px;}
+  .form-aside ul{list-style:none;margin-top:32px;display:flex;flex-direction:column;gap:16px;}
+  .form-aside li{display:flex;gap:14px;align-items:flex-start;font-size:15px;}
+  .form-aside li .ck{
+    flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent-deep);
+    display:flex;align-items:center;justify-content:center;margin-top:1px;
+  }
+  .form-aside .quote{
+    margin-top:40px;padding:24px 26px;border-left:2px solid var(--accent);background:var(--bg);border-radius:0 16px 16px 0;
+  }
+  .form-aside .quote p{font-family:'Playfair Display',serif;font-style:italic;font-size:17px;line-height:1.45;}
+  .form-aside .quote span{display:block;margin-top:10px;font-size:12.5px;color:var(--ink-soft);}
+
+  .form-shell{background:var(--bg);border:1px solid var(--line);border-radius:24px;padding:44px 40px;}
+  .form-shell .f-title{font-size:19px;margin-bottom:6px;}
+  .form-shell .f-hint{font-size:13.5px;color:var(--ink-soft);margin-bottom:28px;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+  .f-fields{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .f-field label{font-size:12.5px;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:7px;}
+  .f-field input,.f-field select{
+    width:100%;padding:14px 16px;border:1px solid var(--line-strong);border-radius:10px;
+    background:var(--paper);font-family:'Questrial',sans-serif;font-size:15px;color:var(--ink);
+    transition:border-color .25s;appearance:none;-webkit-appearance:none;
+  }
+  .f-field select{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%235B5B62' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 16px center;padding-right:40px;cursor:pointer;
+  }
+  .f-field select:invalid{color:var(--ink-faint);}
+  .f-field input:focus,.f-field select:focus{outline:none;border-color:var(--accent-deep);}
+  .f-submit[disabled]{opacity:0.6;pointer-events:none;}
+  .f-privacy{margin-top:14px;font-size:12.5px;color:var(--ink-faint);text-align:center;}
+  .f-success{display:none;text-align:center;padding:20px 0;}
+  .f-success.active{display:block;animation:fadeUp .5s;}
+  .f-success .check-big{width:56px;height:56px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;}
+  .f-success h3{font-size:24px;margin-bottom:10px;}
+  .f-success p{color:var(--ink-soft);}
+
+  /* ===== FAQ ===== */
+  .faq{max-width:760px;margin:0 auto;}
+  .faq details{border-bottom:1px solid var(--line);}
+  .faq details:first-of-type{border-top:1px solid var(--line);}
+  .faq summary{
+    list-style:none;cursor:pointer;padding:24px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;
+    font-family:'Lexend',sans-serif;font-weight:500;font-size:17px;letter-spacing:-0.01em;
+  }
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{
+    content:"+";flex:0 0 auto;font-family:'Playfair Display',serif;font-size:22px;color:var(--accent-deep);
+    transition:transform .3s;
+  }
+  .faq details[open] summary::after{transform:rotate(45deg);}
+  .faq .a{padding:0 0 24px;color:var(--ink-soft);font-size:15.5px;max-width:640px;}
+
+  /* ===== Closing ===== */
+  .closing{
+    padding:170px 0;text-align:center;color:var(--bg);position:relative;overflow:hidden;background:var(--dark);
+  }
+  .closing .bg{position:absolute;inset:0;z-index:0;}
+  .closing .bg img{width:100%;height:100%;object-fit:cover;opacity:0.38;}
+  .closing .bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 50%, rgba(18,18,20,0.35), rgba(18,18,20,0.92));}
+  .closing .wrap{position:relative;z-index:1;}
+  .closing .eyebrow{color:var(--accent);}
+  .closing .eyebrow::before{background:var(--accent);}
+  .closing h2{font-size:clamp(32px,5.4vw,64px);max-width:900px;margin:0 auto;}
+  .closing h2 em.hl{color:var(--accent);}
+  .closing-sub{margin:22px auto 0;max-width:520px;color:var(--dark-ink-soft);font-size:16.5px;}
+  .closing .btn{margin-top:44px;}
+
+  /* ===== Footer ===== */
+  footer{padding:36px 0 110px;background:var(--dark);border-top:1px solid var(--dark-line);}
+  footer .wrap{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+  footer .f-brand img{height:26px;width:auto;display:block;}
+  footer .f-legal{font-size:12.5px;color:var(--dark-ink-soft);}
+  @media (min-width:901px){footer{padding-bottom:36px;}}
+
+  /* ===== Sticky CTA mobile ===== */
+  .sticky-cta{
+    display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    background:rgba(250,248,244,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border-top:1px solid var(--line);
+    transform:translateY(110%);transition:transform .4s cubic-bezier(.2,.8,.2,1);
+  }
+  .sticky-cta.show{transform:translateY(0);}
+  .sticky-cta .btn{width:100%;}
+
+  [data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1);}
+  [data-reveal].in{opacity:1;transform:translateY(0);}
+
+  @media (max-width:900px){
+    .wrap{padding:0 20px;}
+    section.pad{padding:84px 0;}
+    header nav a.link{display:none;}
+    .hero{padding:48px 0 0;}
+    .hero .wrap{grid-template-columns:1fr;gap:28px;}
+    .hero .wrap > *{min-width:0;}
+    .hero-copy{padding-bottom:0;}
+    .btn{white-space:normal;text-align:center;}
+    .hero .cta-row .btn{width:100%;}
+    .hero h1{overflow-wrap:anywhere;}
+    .trust-row{gap:24px;}
+    .hero-figure{height:400px;width:100%;}
+    .hero-mark{width:360px;height:360px;bottom:-40px;}
+    .hero-woman{width:120%;}
+    .mock-card.mc-1{display:none;}
+    .sale-toast{width:168px;right:-6px;top:110px;}
+    .pain-grid{grid-template-columns:1fr;}
+    .pain-card{padding:30px 24px;}
+    .method-grid{grid-template-columns:1fr;}
+    .testi-grid{grid-template-columns:1fr;}
+    .diff-grid{grid-template-columns:1fr;}
+    .diff-foot{flex-direction:column;}
+    .steps{grid-template-columns:1fr;gap:36px;}
+    .steps::before{display:none;}
+    .form-layout{grid-template-columns:1fr;gap:40px;}
+    .form-layout > *{min-width:0;}
+    .form-shell{padding:30px 22px;}
+    .f-fields{grid-template-columns:1fr;}
+    .sticky-cta{display:block;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap">
+    <a href="#top" class="logo"><img src="assets/logo-icone.png" alt=""><span>Alcan<em>See</em></span></a>
+    <nav>
+      <a href="#metodo" class="link">Método</a>
+      <a href="#resultados" class="link">Resultados</a>
+      <a href="#diferenciais" class="link">Diferenciais</a>
+      <a href="#faq" class="link">Dúvidas</a>
+      <a href="#formulario" class="btn btn-primary btn-sm">Diagnóstico gratuito</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <div class="eyebrow" data-reveal>Assessoria de marketing para moda</div>
+        <h1 data-reveal>Sua loja vendendo <em class="hl">todo mês</em> — não só na liquidação.</h1>
+        <p class="sub" data-reveal>Se o faturamento da sua loja sobe e desce como uma montanha-russa, o problema não é o produto nem o seu esforço. É a falta de um método. Descubra em 30 minutos o que está travando as suas vendas.</p>
+        <div class="cta-row" data-reveal>
+          <a href="#formulario" class="btn btn-primary">Quero meu diagnóstico gratuito</a>
+          <a href="#resultados" class="btn btn-outline">Ver resultados</a>
+        </div>
+        <p class="micro" data-reveal>Gratuito · online · sem compromisso</p>
+        <div class="trust-row" data-reveal>
+          <div class="trust"><span class="num">+400</span><span class="lbl">lojas atendidas</span></div>
+          <div class="trust"><span class="num">+5</span><span class="lbl">anos de moda</span></div>
+          <div class="trust"><span class="num">3</span><span class="lbl">pilares de método</span></div>
+        </div>
+      </div>
+
+      <div class="hero-figure" data-reveal>
+        <div class="hero-mark" aria-hidden="true"><img src="assets/logo-icone.png" alt=""></div>
+        <!-- Placeholder (Unsplash, uso comercial livre) já recortado. Trocar por foto real de cliente se quiser. -->
+        <img class="hero-woman" src="assets/hero-mulher-sacolas.webp" alt="Cliente de loja de moda com sacolas de compras">
+        <div class="mock-card mc-1">
+          <div class="who"><span>Mariana Esteves</span><span>14:00</span></div>
+          <div class="msg">Olá, qual valor desse vestido?</div>
+        </div>
+        <div class="sale-toast">
+          <div class="t1">Venda realizada</div>
+          <div class="t2">Cartão de crédito</div>
+          <div class="t3">R$ 510,27</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <section class="stats-band">
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="stat-item"><b>+400</b> lojas atendidas</span>
+        <span class="stat-dot">✦</span>
+        <span class="stat-item">método especializado em moda</span>
+        <span class="stat-dot">✦</span>
+        <span class="stat-item"><b>+5</b> anos de experiência</span>
+        <span class="stat-dot">✦</span>
+        <span class="stat-item">A maior assessoria de Marketing para Moda do país</span>
+        <span class="stat-dot">✦</span>
+        <span class="stat-item"><b>+400</b> lojas atendidas</span>
+        <span class="stat-dot">✦</span>
+        <span class="stat-item">método especializado em moda</span>
+        <span class="stat-dot">✦</span>
+        <span class="stat-item"><b>+5</b> anos de experiência</span>
+        <span class="stat-dot">✦</span>
+        <span class="stat-item">A maior assessoria de Marketing para Moda do país</span>
+        <span class="stat-dot">✦</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DORES -->
+  <section class="pad dark">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow center">Reconhece algum desses?</div>
+        <h2>A sua loja vive assim?</h2>
+        <p>São os mesmos sintomas que encontramos em quase todas as lojas antes de entrar na AlcanSee.</p>
+      </div>
+      <div class="pain-grid" data-reveal>
+        <div class="pain-card">
+          <span class="pain-x">01</span>
+          <div>
+            <h3>Vende bem em um mês, cai no outro</h3>
+            <p>Você nunca sabe se vai bater a meta. Cada mês começa do zero e o planejamento vira torcida.</p>
+          </div>
+        </div>
+        <div class="pain-card">
+          <span class="pain-x">02</span>
+          <div>
+            <h3>Só vende quando faz promoção</h3>
+            <p>Sem desconto, o movimento some. E cada promoção come a margem que sobrou.</p>
+          </div>
+        </div>
+        <div class="pain-card">
+          <span class="pain-x">03</span>
+          <div>
+            <h3>Posta todo dia e o Instagram não converte</h3>
+            <p>Você produz conteúdo, faz stories, responde direct… e as vendas não acompanham o esforço.</p>
+          </div>
+        </div>
+        <div class="pain-card">
+          <span class="pain-x">04</span>
+          <div>
+            <h3>Já impulsionou post e o dinheiro sumiu</h3>
+            <p>Tentou anúncio, tentou agência genérica, e o retorno nunca justificou o investimento.</p>
+          </div>
+        </div>
+      </div>
+      <p class="pain-bridge" data-reveal>Nada disso é falta de esforço. <span>É falta de um sistema</span> feito para o jeito que loja de moda vende.</p>
+    </div>
+  </section>
+
+  <!-- MÉTODO -->
+  <section class="pad" id="metodo">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow center">O método AlcanSee</div>
+        <h2>Três pilares que fazem a sua loja <em class="hl">bater meta</em> com consistência</h2>
+        <p>Não é só tráfego. É captação, venda e retenção funcionando juntas, na sequência certa.</p>
+      </div>
+
+      <div class="method-grid">
+        <div class="method-card" data-reveal>
+          <span class="method-index">01</span>
+          <h3>Captação</h3>
+          <p>Campanhas estruturadas para a sua loja ser vista pelas clientes certas, gerando novas oportunidades de venda todos os dias.</p>
+          <ul>
+            <li>Anúncios no Instagram e Facebook com criativos pensados para moda</li>
+            <li>Públicos definidos pelo perfil de quem já compra de você</li>
+            <li>Direcionamento de conteúdo para atrair, não só entreter</li>
+          </ul>
+          <span class="outcome">Resultado: mais clientes novas chegando</span>
+        </div>
+        <div class="method-card" data-reveal>
+          <span class="method-index">02</span>
+          <h3>Vendas</h3>
+          <p>Planejamento para posicionar os seus produtos e gerar desejo de compra, transformando interesse em pedido fechado.</p>
+          <ul>
+            <li>Script de vendas para WhatsApp e direct</li>
+            <li>Direcionamento comercial para a sua equipe</li>
+            <li>Calendário de lançamentos e coleções</li>
+          </ul>
+          <span class="outcome">Resultado: mais conversas virando venda</span>
+        </div>
+        <div class="method-card" data-reveal>
+          <span class="method-index">03</span>
+          <h3>Retenção</h3>
+          <p>Sua loja vira a primeira que a cliente lembra, para que ela compre de novo e o faturamento fique previsível.</p>
+          <ul>
+            <li>Estratégia de recompra para a base de clientes</li>
+            <li>Remarketing para quem viu e não comprou</li>
+            <li>Acompanhamento mensal de metas e indicadores</li>
+          </ul>
+          <span class="outcome">Resultado: faturamento previsível</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="pad" id="resultados" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow center">Resultados reais</div>
+        <h2>Lojas que passaram pelo método</h2>
+        <p>Donas de loja contando, com as próprias palavras, o que mudou.</p>
+      </div>
+
+      <div class="testi-grid">
+        <div class="testi-card" data-reveal>
+          <div class="testi-video" data-yt="11Nv4It8rpE">
+            <img src="https://i.ytimg.com/vi_webp/11Nv4It8rpE/sddefault.webp" alt="Depoimento Paula Cabral">
+            <div class="play-btn"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="#121214"><path d="M8 5v14l11-7z"/></svg></span></div>
+          </div>
+          <div class="testi-body">
+            <div class="testi-result">+100%<small>de crescimento</small></div>
+            <p class="testi-quote">"A AlcanSee nos entregou mais de 100% de crescimento!"</p>
+            <div class="testi-who"><span class="name">Paula Cabral</span><span class="role">Paula</span></div>
+          </div>
+        </div>
+
+        <div class="testi-card" data-reveal>
+          <div class="testi-video" data-yt="UiAjQB1iDg8">
+            <img src="https://i.ytimg.com/vi_webp/UiAjQB1iDg8/sddefault.webp" alt="Depoimento Ana Clara, Loucas por Moda">
+            <div class="play-btn"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="#121214"><path d="M8 5v14l11-7z"/></svg></span></div>
+          </div>
+          <div class="testi-body">
+            <div class="testi-result">+27%<small>em vendas no 1º mês</small></div>
+            <p class="testi-quote">"Aumentamos 27% em vendas em 1 mês com a AlcanSee!"</p>
+            <div class="testi-who"><span class="name">Ana Clara</span><span class="role">Loucas por Moda</span></div>
+          </div>
+        </div>
+
+        <div class="testi-card" data-reveal>
+          <div class="testi-video" data-yt="pIpM-snrLco">
+            <img src="https://i.ytimg.com/vi_webp/pIpM-snrLco/sddefault.webp" alt="Depoimento Eduarda, Matos Boutique">
+            <div class="play-btn"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="#121214"><path d="M8 5v14l11-7z"/></svg></span></div>
+          </div>
+          <div class="testi-body">
+            <div class="testi-result">Virada<small>na rotina da loja</small></div>
+            <p class="testi-quote">"Eles mudaram a minha vida e a vida da minha loja!"</p>
+            <div class="testi-who"><span class="name">Eduarda</span><span class="role">Matos Boutique</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAIS -->
+  <section class="pad" id="diferenciais" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow center">Por que AlcanSee</div>
+        <h2>Diferenciais da Alcan<em class="hl">See</em></h2>
+        <p>Tudo o que a sua loja recebe quando entra no método — não é só tráfego.</p>
+      </div>
+      <div class="diff-grid" data-reveal>
+        <div class="diff-card">
+          <span class="diff-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.39 4.84 5.34.78-3.87 3.77.91 5.32L12 14.27l-4.77 2.44.91-5.32-3.87-3.77 5.34-.78L12 2z"/><path d="M9 12.5l1.8 1.8L15 10" stroke-width="1.6"/></svg></span>
+          <h3>Método validado em +400 lojas</h3>
+          <p>Estratégias testadas só em moda — vestuário, calçados e acessórios — e não em qualquer negócio.</p>
+        </div>
+        <div class="diff-card">
+          <span class="diff-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4L13.4 20.6a2 2 0 01-2.8 0L3 13V3h10l7.6 7.6a2 2 0 010 2.8z"/><circle cx="7.5" cy="7.5" r="1.2" fill="currentColor" stroke="none"/><path d="M13 14l2-2 3 3" stroke-width="1.6"/></svg></span>
+          <h3>Validação de produto</h3>
+          <p>Nossa metodologia gera demanda e identifica as principais tendências para escalar as vendas das suas peças.</p>
+        </div>
+        <div class="diff-card">
+          <span class="diff-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M10 9.5v5l4.5-2.5L10 9.5z" fill="currentColor" stroke="none"/></svg></span>
+          <h3>Produção de conteúdo</h3>
+          <p>Direcionamos a produção de conteúdos e criativos estratégicos para seus anúncios, alinhados à sua marca.</p>
+        </div>
+        <div class="diff-card">
+          <span class="diff-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M8 15l2.5 2.5L16 12.5" stroke-width="1.6"/></svg></span>
+          <h3>Direcionamento de estratégia</h3>
+          <p>Receba estratégias mensais alinhadas ao calendário comercial da moda, prontas para implementar na sua loja.</p>
+        </div>
+        <div class="diff-card">
+          <span class="diff-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.9" fill="currentColor" stroke="none"/></svg></span>
+          <h3>Estratégias validadas</h3>
+          <p>Campanhas e ações que já provaram resultado em centenas de lojas de moda antes de chegar na sua.</p>
+        </div>
+        <div class="diff-card">
+          <span class="diff-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 3.5V5z"/><path d="M8 9h8M8 12h5" stroke-width="1.6"/></svg></span>
+          <h3>Treinamento comercial</h3>
+          <p>Tráfego sem venda não adianta. Script de vendas para WhatsApp e direct + direcionamento para a sua equipe fechar mais.</p>
+        </div>
+      </div>
+      <div class="diff-foot" data-reveal>
+        <p>Tráfego pago é só um dos pilares. <b>É o conjunto que faz a loja bater meta.</b></p>
+        <a href="#formulario" class="btn btn-primary">Quero meu diagnóstico gratuito</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="pad dark" id="como-funciona">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow center">Como funciona</div>
+        <h2>Do formulário ao plano <em class="hl">em 3 passos</em></h2>
+        <p>Sem enrolação e sem call de venda disfarçada. Você sai da conversa sabendo o que fazer, feche com a gente ou não.</p>
+      </div>
+      <div class="steps" data-reveal>
+        <div class="step">
+          <div class="step-n">1</div>
+          <h3>Você aplica</h3>
+          <p>Preenche o formulário em menos de 1 minuto com os dados da sua loja e o seu faturamento atual.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">2</div>
+          <h3>A gente analisa</h3>
+          <p>Nosso time olha o seu Instagram, o seu posicionamento e o seu momento antes mesmo de falar com você.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">3</div>
+          <h3>Diagnóstico ao vivo</h3>
+          <p>Uma conversa online de 30 minutos mostrando o que está travando as vendas e por onde começar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="form-section pad" id="formulario">
+    <div class="wrap">
+      <div class="form-layout">
+        <div class="form-aside" data-reveal>
+          <div class="eyebrow">Diagnóstico gratuito</div>
+          <h2>Descubra o que está travando as vendas da sua loja</h2>
+          <p class="lead">Preencha e receba uma análise feita por quem já atendeu mais de 400 lojas de moda.</p>
+          <ul>
+            <li><span class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Leitura do seu Instagram e do seu posicionamento</span></li>
+            <li><span class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Os principais gargalos entre captação, venda e retenção</span></li>
+            <li><span class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Um plano de por onde começar nos próximos 90 dias</span></li>
+          </ul>
+          <div class="quote">
+            <p>"Aumentamos 27% em vendas em 1 mês com a AlcanSee!"</p>
+            <span>Ana Clara · Loucas por Moda</span>
+          </div>
+        </div>
+
+        <div class="form-shell" data-reveal>
+          <form id="leadForm">
+            <h3 class="f-title">Aplicar para o diagnóstico</h3>
+            <p class="f-hint">Leva menos de 1 minuto. Entramos em contato pelo WhatsApp.</p>
+            <div class="f-fields">
+              <div class="f-field"><label>Nome e sobrenome</label><input type="text" name="Nome" placeholder="Seu nome e sobrenome" required></div>
+              <div class="f-field"><label>Telefone (WhatsApp)</label><input type="tel" name="Número" placeholder="(00) 00000-0000" required></div>
+              <div class="f-field"><label>E-mail</label><input type="email" name="Email" placeholder="Seu e-mail" required></div>
+              <div class="f-field"><label>Nome da loja</label><input type="text" name="Nome da loja" placeholder="Nome da sua loja" required></div>
+              <div class="f-field"><label>Instagram da loja</label><input type="text" name="Instagram da loja" placeholder="@suamarca" required></div>
+              <div class="f-field">
+                <label>Qual seu faturamento mensal?</label>
+                <select name="Faturamento" required>
+                  <option value="" disabled selected>Selecione uma faixa</option>
+                  <option>Até 10 mil por mês</option>
+                  <option>De 10 mil a 20 mil por mês</option>
+                  <option>De 20 mil a 30 mil por mês</option>
+                  <option>De 30 mil a 50 mil por mês</option>
+                  <option>De 50 mil a 70 mil por mês</option>
+                  <option>De 70 mil a 100 mil por mês</option>
+                  <option>De 100 mil a 200 mil por mês</option>
+                  <option>Mais de 200 mil por mês</option>
+                </select>
+              </div>
+              <div class="f-field" style="grid-column:1/-1;">
+                <label>Qual seu nicho?</label>
+                <select name="Nicho" required>
+                  <option value="" disabled selected>Selecione uma categoria</option>
+                  <option>Vestuário</option>
+                  <option>Calçados</option>
+                  <option>Acessórios</option>
+                  <option>Outros</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary f-submit" style="width:100%;margin-top:26px;">Quero meu diagnóstico gratuito</button>
+            <p class="f-privacy">Seus dados ficam só com a gente. Sem spam.</p>
+          </form>
+
+          <div class="f-success" id="fSuccess">
+            <div class="check-big">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#121214" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Aplicação enviada!</h3>
+            <p>Nosso time vai analisar a sua loja e entrar em contato pelo WhatsApp em breve.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pad" id="faq">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow center">Dúvidas frequentes</div>
+        <h2>O que as donas de loja perguntam antes de aplicar</h2>
+      </div>
+      <div class="faq" data-reveal>
+        <details>
+          <summary>O diagnóstico é gratuito mesmo?</summary>
+          <div class="a">Sim. É uma conversa online de cerca de 30 minutos, sem custo e sem compromisso. Você sai com uma leitura do que está travando as vendas e um caminho de por onde começar — independente de fechar com a gente.</div>
+        </details>
+        <details>
+          <summary>Minha loja é pequena. Faz sentido aplicar?</summary>
+          <div class="a">O método funciona melhor em lojas que já vendem e querem ganhar previsibilidade e escala. Se a sua loja ainda está começando, a gente é sincero sobre isso no diagnóstico e te indica o que fazer antes.</div>
+        </details>
+        <details>
+          <summary>Preciso ter loja física ou funciona para loja online?</summary>
+          <div class="a">Funciona para os dois. Atendemos lojas físicas, lojas que vendem pelo Instagram e WhatsApp e e-commerces de vestuário, calçados e acessórios.</div>
+        </details>
+        <details>
+          <summary>Já tentei tráfego pago e não deu certo. Por que seria diferente?</summary>
+          <div class="a">Porque anúncio sozinho não resolve. Na maioria das lojas o problema está na sequência: captação sem estrutura de venda, ou venda sem retenção. O método trabalha os três pilares juntos, e é especializado em moda — não é uma agência que atende de tudo.</div>
+        </details>
+        <details>
+          <summary>Em quanto tempo vejo resultado?</summary>
+          <div class="a">Depende do momento da loja, mas os primeiros sinais costumam aparecer nas primeiras semanas de campanha. O trabalho é estruturado pensando nos primeiros 90 dias, com metas e acompanhamento mensal.</div>
+        </details>
+        <details>
+          <summary>Quanto custa a assessoria?</summary>
+          <div class="a">O investimento varia conforme o tamanho e o momento da sua loja, por isso não trabalhamos com um valor fechado antes de conhecer o seu negócio. No diagnóstico você entende o que faria sentido para o seu caso.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <div class="bg" aria-hidden="true">
+      <!-- Placeholder (Unsplash). Trocar por foto real de loja cliente. -->
+      <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=1800&q=70&fit=crop" alt="">
+    </div>
+    <div class="wrap">
+      <div data-reveal>
+        <div class="eyebrow center">AlcanSee Digital</div>
+        <h2>Sua loja pode estar <em class="hl">faturando muito mais</em> em 90 dias.</h2>
+        <p class="closing-sub">O primeiro passo leva menos de 1 minuto. Aplique para o diagnóstico gratuito e descubra exatamente o que está travando as suas vendas.</p>
+        <a href="#formulario" class="btn btn-accent">Quero meu diagnóstico gratuito</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="#top" class="f-brand">
+      <img src="assets/logo-full.png" alt="AlcanSee Digital">
+    </a>
+    <span class="f-legal">AlcanSee Digital · CNPJ: 51.427.399/0001-22</span>
+  </div>
+</footer>
+
+<div class="sticky-cta" id="stickyCta">
+  <a href="#formulario" class="btn btn-primary">Quero meu diagnóstico gratuito</a>
+</div>
+
+<script>
+  // ---- config ----
+  var CONFIG = {
+    // Mesmo Web App do Google Apps Script da LP atual (veja SETUP.md)
+    FORM_ENDPOINT: "https://script.google.com/macros/s/AKfycbwUTh2Ryvu8iDWx-FCJGBqdq94O01wZnoU7kw0g2KlObejsqFEbWbIWF-4u8HRg4X2Q/exec"
+  };
+
+  // ---- reveal on scroll ----
+  var revealEls = document.querySelectorAll('[data-reveal]');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.14});
+  revealEls.forEach(function(el){ io.observe(el); });
+
+  // ---- header + sticky CTA (mobile) ----
+  var header = document.getElementById('siteHeader');
+  var sticky = document.getElementById('stickyCta');
+  var formSection = document.getElementById('formulario');
+  function onScroll(){
+    header.classList.toggle('scrolled', window.scrollY > 10);
+    var pastHero = window.scrollY > window.innerHeight * 0.7;
+    var r = formSection.getBoundingClientRect();
+    var formVisible = r.top < window.innerHeight && r.bottom > 0;
+    sticky.classList.toggle('show', pastHero && !formVisible);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // ---- lite youtube embed ----
+  document.querySelectorAll('.testi-video').forEach(function(box){
+    box.addEventListener('click', function(){
+      var id = box.getAttribute('data-yt');
+      box.innerHTML = '<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0" title="Depoimento" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+    });
+  });
+
+  // ---- lead form ----
+  (function(){
+    var form = document.getElementById('leadForm');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      // trava de segurança: não envia com campo obrigatório vazio
+      if(!form.checkValidity()){
+        form.reportValidity();
+        return;
+      }
+
+      var fd = new FormData(form);
+      var payload = {};
+      fd.forEach(function(v, k){ payload[k] = v; });
+
+      var submitBtn = form.querySelector('.f-submit');
+      submitBtn.textContent = 'Enviando...';
+      submitBtn.disabled = true;
+
+      function showSuccess(){
+        form.style.display = 'none';
+        document.getElementById('fSuccess').classList.add('active');
+      }
+
+      if(CONFIG.FORM_ENDPOINT){
+        var params = new URLSearchParams(payload);
+        fetch(CONFIG.FORM_ENDPOINT, { method:'POST', mode:'no-cors', body: params })
+          .then(showSuccess)
+          .catch(showSuccess);
+      } else {
+        console.warn('FORM_ENDPOINT não configurado. Dados capturados:', payload);
+        showSuccess();
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
