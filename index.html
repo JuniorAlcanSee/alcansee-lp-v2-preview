@@ -742,6 +742,20 @@
     FORM_ENDPOINT: "https://script.google.com/macros/s/AKfycbwUTh2Ryvu8iDWx-FCJGBqdq94O01wZnoU7kw0g2KlObejsqFEbWbIWF-4u8HRg4X2Q/exec"
   };
 
+  // ---- sempre abrir no topo; âncoras rolam sem gravar #hash na URL ----
+  if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+  if(location.hash){ history.replaceState(null, '', location.pathname + location.search); }
+  window.scrollTo(0, 0);
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href').slice(1);
+      var target = id ? document.getElementById(id) : document.body;
+      if(!target) return;
+      e.preventDefault();
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
   // ---- reveal on scroll ----
   var revealEls = document.querySelectorAll('[data-reveal]');
   var io = new IntersectionObserver(function(entries){
